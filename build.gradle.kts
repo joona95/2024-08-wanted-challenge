@@ -29,6 +29,7 @@ dependencies {
     implementation("com.google.guava:guava:32.1.3-jre")
     implementation("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.apache.groovy:groovy:4.0.18")
     testImplementation("org.spockframework:spock-core:2.4-M1-groovy-4.0")
