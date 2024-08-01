@@ -15,6 +15,8 @@ class MemberService(
     }
 
     private fun checkDuplicatedMemberId(memberId: String) {
-        memberRepository.findByMemberId(memberId) ?: throw MemberIdDuplicatedException()
+        if (memberRepository.existsByMemberId(memberId)) {
+            throw MemberIdDuplicatedException()
+        }
     }
 }
