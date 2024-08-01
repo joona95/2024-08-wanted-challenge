@@ -1,4 +1,6 @@
-import org.project.portfolio.Member
+package member
+
+import org.project.portfolio.member.Member
 import spock.lang.Specification
 
 class MemberTest extends Specification {

@@ -1,7 +1,8 @@
-package org.project.portfolio
+package org.project.portfolio.member
 
 import com.google.common.base.Preconditions
 import jakarta.persistence.*
+import org.project.portfolio.*
 import org.project.portfolio.common.BaseEntity
 
 @Entity
