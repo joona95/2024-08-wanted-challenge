@@ -11,7 +11,7 @@ class MemberService(
     private val passwordEncoder: PasswordEncoder
 ) {
 
-    fun createMember(request: MemberCreateRequest) {
+    fun join(request: MemberCreateRequest) {
 
         checkValidMemberCreateRequest(request)
         checkDuplicatedMemberId(request.memberId)

@@ -15,6 +15,6 @@ class MemberController(
     fun join(
         @RequestBody request: MemberCreateRequest
     ) {
-        memberService.createMember(request)
+        memberService.join(request)
     }
 }
