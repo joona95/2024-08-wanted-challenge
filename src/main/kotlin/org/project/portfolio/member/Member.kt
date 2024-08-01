@@ -12,7 +12,7 @@ class Member(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     val id: Long? = null,
-    @Column(name = "member_id", nullable = false)
+    @Column(name = "member_id", nullable = false, unique = true)
     var memberId: String,
     @Column(name = "email", nullable = false)
     var email: String,
