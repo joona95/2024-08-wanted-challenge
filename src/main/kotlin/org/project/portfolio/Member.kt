@@ -3,11 +3,11 @@ package org.project.portfolio
 import com.google.common.base.Preconditions
 
 class Member(
-    private var memberId: String,
-    private var email: String,
-    private var password: String,
-    private var memberName: String,
-    private var phoneNumber: String
+    var memberId: String,
+    var email: String,
+    var password: String,
+    var memberName: String,
+    var phoneNumber: String
 ) {
 
     init {
