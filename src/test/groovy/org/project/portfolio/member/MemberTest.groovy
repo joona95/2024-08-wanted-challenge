@@ -1,19 +1,26 @@
-package member
+package org.project.portfolio.member
 
-import org.project.portfolio.member.Member
+import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 
 class MemberTest extends Specification {
 
-    void "회원 생성 성공"() {
+    private PasswordEncoder passwordEncoder = Mock()
+
+    def "회원 생성 성공"() {
+
+        given:
+        passwordEncoder.encode(password) >> password
 
         when:
         var member = new Member(
+                null,
                 memberId,
                 email,
                 password,
                 memberName,
-                phoneNumber
+                phoneNumber,
+                passwordEncoder
         )
 
         then:
@@ -35,15 +42,17 @@ class MemberTest extends Specification {
         "test"   | "test@gmail.com" | "abcd123!!" | "가나다"      | "000-000-0000"
     }
 
-    void "회원 생성 시 유효성 검증"() {
+    def "회원 생성 시 유효성 검증"() {
 
         when:
         new Member(
+                null,
                 memberId,
                 email,
                 password,
                 memberName,
-                phoneNumber
+                phoneNumber,
+                passwordEncoder
         )
 
         then:
