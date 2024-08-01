@@ -22,7 +22,7 @@ fun isValidPhoneNumber(phoneNumber: String): Boolean {
 
 fun isValidMemberId(memberId: String): Boolean {
 
-    val memberIdRegex = "^[a-zA-Z]*$"
+    val memberIdRegex = "^[a-zA-Z]+$"
     val pattern = Pattern.compile(memberIdRegex, Pattern.CASE_INSENSITIVE)
     val matcher = pattern.matcher(memberId)
 
@@ -31,7 +31,7 @@ fun isValidMemberId(memberId: String): Boolean {
 
 fun isValidMemberName(memberName: String): Boolean {
 
-    val memberNameRegex = "^[가-힣]*$"
+    val memberNameRegex = "^[가-힣]+$"
     val pattern = Pattern.compile(memberNameRegex, Pattern.CASE_INSENSITIVE)
     val matcher = pattern.matcher(memberName)
 
@@ -40,7 +40,7 @@ fun isValidMemberName(memberName: String): Boolean {
 
 fun isValidPassword(password: String): Boolean {
 
-    val passwordRegex = "^(?=.*?[a-zA-Z0-9]{5,})(?=.*?[#?!@\$ %^&*-]{2,})$"
+    val passwordRegex = "^(?=.*?[a-zA-Z0-9]{5,})(?=.*?[#?!@\$ %^&*-]{2,}).{1,}$"
     val pattern = Pattern.compile(passwordRegex, Pattern.CASE_INSENSITIVE)
     val matcher = pattern.matcher(password)
 
