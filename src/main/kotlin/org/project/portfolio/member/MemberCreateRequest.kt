@@ -1,5 +1,7 @@
 package org.project.portfolio.member
 
+import org.springframework.security.crypto.password.PasswordEncoder
+
 data class MemberCreateRequest(
     val memberId: String,
     val email: String,
@@ -8,13 +10,14 @@ data class MemberCreateRequest(
     val phoneNumber: String
 ) {
 
-    fun toEntity() : Member {
+    fun toEntity(passwordEncoder: PasswordEncoder) : Member {
         return Member(
             memberId = this.memberId,
             email = this.email,
             password = this.password,
             memberName = this.memberName,
-            phoneNumber = this.phoneNumber
+            phoneNumber = this.phoneNumber,
+            passwordEncoder = passwordEncoder
         )
     }
 }

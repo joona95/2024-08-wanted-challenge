@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions
 import jakarta.persistence.*
 import org.project.portfolio.*
 import org.project.portfolio.common.BaseEntity
+import org.springframework.security.crypto.password.PasswordEncoder
 
 @Entity
 @Table(name = "member")
@@ -21,7 +22,8 @@ class Member(
     @Column(name = "member_name", nullable = false)
     var memberName: String,
     @Column(name = "phone_number", nullable = false)
-    var phoneNumber: String
+    var phoneNumber: String,
+    passwordEncoder: PasswordEncoder
 ) : BaseEntity() {
 
     init {
@@ -33,5 +35,7 @@ class Member(
             isValidPassword(this.password),
             "비밀번호 형식이 올바르지 않습니다. (대소문자와 숫자 5글자 이상, 특수문자 2글자 이상 포함)"
         )
+
+        this.password = passwordEncoder.encode(this.password)
     }
 }

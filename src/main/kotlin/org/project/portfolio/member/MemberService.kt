@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service
 
 @Service
 class MemberService(
-    private val memberRepository: MemberRepository
+    private val memberRepository: MemberRepository,
+    private val passwordEncoder: PasswordEncoder
 ) {
 
     fun createMember(request: MemberCreateRequest) {
 
+        checkValidMemberCreateRequest(request)
         checkDuplicatedMemberId(request.memberId)
 
-        memberRepository.save(request.toEntity())
+        memberRepository.save(request.toEntity(passwordEncoder))
     }
 
     private fun checkValidMemberCreateRequest(request: MemberCreateRequest) {
