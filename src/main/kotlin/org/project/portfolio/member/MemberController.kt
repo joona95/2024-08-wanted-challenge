@@ -17,4 +17,11 @@ class MemberController(
     ) {
         memberService.join(request)
     }
+
+    @PostMapping("/login")
+    fun login(
+        @RequestBody request: MemberLoginRequest
+    ): MemberLoginResponse {
+        return memberService.login(request)
+    }
 }

@@ -2,13 +2,15 @@ package org.project.portfolio.member
 
 import com.google.common.base.Preconditions
 import org.project.portfolio.*
+import org.project.portfolio.common.JwtProvider
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class MemberService(
     private val memberRepository: MemberRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val jwtProvider: JwtProvider
 ) {
 
     fun join(request: MemberCreateRequest) {
@@ -36,5 +38,18 @@ class MemberService(
         if (memberRepository.existsByMemberId(memberId)) {
             throw MemberIdDuplicatedException()
         }
+    }
+
+    fun login(request: MemberLoginRequest): MemberLoginResponse {
+
+        val member = memberRepository.findByMemberId(request.memberId).orElseThrow {
+            throw MemberNotFoundException()
+        }
+
+        if (!passwordEncoder.matches(request.password, member.password)) {
+            throw MemberPasswordNotMatchException()
+        }
+
+        return MemberLoginResponse(token = jwtProvider.createToken(member.id!!))
     }
 }
