@@ -1,8 +1,15 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.application
 
 import com.google.common.base.Preconditions
 import org.project.portfolio.*
 import org.project.portfolio.common.JwtProvider
+import org.project.portfolio.member.application.dto.MemberCreateRequest
+import org.project.portfolio.member.application.dto.MemberLoginRequest
+import org.project.portfolio.member.application.dto.MemberLoginResponse
+import org.project.portfolio.member.exception.MemberIdDuplicatedException
+import org.project.portfolio.member.exception.MemberNotFoundException
+import org.project.portfolio.member.exception.MemberPasswordNotMatchException
+import org.project.portfolio.member.infra.MemberRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 

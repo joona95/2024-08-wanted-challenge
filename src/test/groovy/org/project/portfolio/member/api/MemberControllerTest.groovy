@@ -1,8 +1,12 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.api
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.project.portfolio.common.JwtProvider
 import org.project.portfolio.config.SecurityConfig
+import org.project.portfolio.member.api.MemberController
+import org.project.portfolio.member.application.MemberDetailsService
+import org.project.portfolio.member.application.MemberService
+import org.project.portfolio.member.application.dto.MemberCreateRequest
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest

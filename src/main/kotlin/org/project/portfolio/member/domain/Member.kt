@@ -1,4 +1,4 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.domain
 
 import com.google.common.base.Preconditions
 import jakarta.persistence.*

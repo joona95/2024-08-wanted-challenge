@@ -1,29 +1,62 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.domain
 
+import org.project.portfolio.member.domain.Member
 import org.springframework.security.crypto.password.PasswordEncoder
 import spock.lang.Specification
 
-class MemberServiceTest extends Specification {
+class MemberTest extends Specification {
 
-    private MemberRepository memberRepository = Mock()
     private PasswordEncoder passwordEncoder = Mock()
-    private MemberService memberService = new MemberService(memberRepository, passwordEncoder)
 
-    def "회원가입 시 유효성 검증"() {
+    def "회원 생성 성공"() {
 
         given:
-        MemberCreateRequest request = new MemberCreateRequest(
+        passwordEncoder.encode(password) >> password
+
+        when:
+        var member = new Member(
+                null,
                 memberId,
                 email,
                 password,
                 memberName,
-                phoneNumber
+                phoneNumber,
+                'USER',
+                passwordEncoder
         )
-        passwordEncoder.encode(password) >> password
-        memberRepository.existsByMemberId(memberId) >> false
+
+        then:
+        member.memberId == memberId
+        member.email == email
+        member.password == password
+        member.memberName == memberName
+        member.phoneNumber == phoneNumber
+
+        where:
+        memberId | email            | password    | memberName | phoneNumber
+        "test"   | "test@gmail.com" | "abcd123!!" | "가나다"      | "000-0000-0000"
+        "TEST"   | "test@gmail.com" | "abcd123!!" | "가나다"      | "000-0000-0000"
+        "teST"   | "test@gmail.com" | "abcd123!!" | "가나다"      | "000-0000-0000"
+        "test"   | "test@gmail.com" | "abcde!!"   | "가나다"      | "000-0000-0000"
+        "test"   | "test@gmail.com" | "12345!!"   | "가나다"      | "000-0000-0000"
+        "test"   | "test@gmail.com" | "abc12!!"   | "가나다"      | "000-0000-0000"
+        "test"   | "test@gmail.com" | "abcd123!!" | "가나"       | "000-0000-0000"
+        "test"   | "test@gmail.com" | "abcd123!!" | "가나다"      | "000-000-0000"
+    }
+
+    def "회원 생성 시 유효성 검증"() {
 
         when:
-        memberService.join(request)
+        new Member(
+                null,
+                memberId,
+                email,
+                password,
+                memberName,
+                phoneNumber,
+                'USER',
+                passwordEncoder
+        )
 
         then:
         def e = thrown(IllegalArgumentException.class)
@@ -55,32 +88,5 @@ class MemberServiceTest extends Specification {
         "test"     | "test@gmail.com" | "abcd123!!" | "가나다"      | "00000000000"    || "휴대폰 번호 형식이 올바르지 않습니다. (ex. 000-0000-0000)"
         "test"     | "test@gmail.com" | "abcd123!!" | "가나다"      | "000-00000000"   || "휴대폰 번호 형식이 올바르지 않습니다. (ex. 000-0000-0000)"
         "test"     | "test@gmail.com" | "abcd123!!" | "가나다"      | "0000-0000-0000" || "휴대폰 번호 형식이 올바르지 않습니다. (ex. 000-0000-0000)"
-    }
-
-    def "회원가입 시 중복 아이디 여부 확인"() {
-
-        given:
-        var memberId = "test"
-        var email = "test@gmail.com"
-        var password = "abcd123!!"
-        var memberName = "가나다"
-        var phoneNumber = "000-0000-0000"
-        MemberCreateRequest request = new MemberCreateRequest(
-                memberId,
-                email,
-                password,
-                memberName,
-                phoneNumber
-        )
-        passwordEncoder.encode(password) >> password
-        memberRepository.existsByMemberId(memberId) >> true
-
-        when:
-        memberService.join(request)
-
-        then:
-        def e = thrown(MemberIdDuplicatedException.class)
-        e.message == "중복되는 회원 아이디가 이미 존재합니다."
-
     }
 }

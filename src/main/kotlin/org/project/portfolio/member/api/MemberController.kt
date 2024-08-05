@@ -1,5 +1,9 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.api
 
+import org.project.portfolio.member.application.dto.MemberCreateRequest
+import org.project.portfolio.member.application.dto.MemberLoginRequest
+import org.project.portfolio.member.application.dto.MemberLoginResponse
+import org.project.portfolio.member.application.MemberService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

@@ -1,6 +1,6 @@
 package org.project.portfolio.config
 
-import org.project.portfolio.member.MemberDetailsService
+import org.project.portfolio.member.application.MemberDetailsService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity

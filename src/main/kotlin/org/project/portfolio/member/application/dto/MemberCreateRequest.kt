@@ -1,5 +1,6 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.application.dto
 
+import org.project.portfolio.member.domain.Member
 import org.springframework.security.crypto.password.PasswordEncoder
 
 data class MemberCreateRequest(

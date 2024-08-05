@@ -1,4 +1,4 @@
-package org.project.portfolio.member
+package org.project.portfolio.member.exception
 
 import java.lang.RuntimeException
 
