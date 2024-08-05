@@ -13,3 +13,7 @@ spring:
     console:
       enabled: true
       path: /h2-console
+
+jwt:
+  secret-key: 0385ac5f6163363e78b3cce68630d9bb710dfb7ba4a375cbdb99c68018e8b1ebc54055bc46aed7d798dd11fff9e65418bd556e6d8e8cb5caccb4611b1dbf7b19
+  token-validity-in-ms: 3600000
