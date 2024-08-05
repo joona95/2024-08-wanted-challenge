@@ -1,6 +1,7 @@
 package org.project.portfolio.member
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.project.portfolio.common.JwtProvider
 import org.project.portfolio.config.SecurityConfig
 import org.spockframework.spring.SpringBean
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,6 +29,10 @@ class MemberControllerTest extends Specification {
     private ObjectMapper objectMapper
     @SpringBean
     private MemberService memberService = Mock()
+    @SpringBean
+    private JwtProvider jwtProvider = Mock()
+    @SpringBean
+    private MemberDetailsService memberDetailsService = Mock()
 
     def "회원가입 성공"() {
 

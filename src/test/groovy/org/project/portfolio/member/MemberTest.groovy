@@ -20,6 +20,7 @@ class MemberTest extends Specification {
                 password,
                 memberName,
                 phoneNumber,
+                'USER',
                 passwordEncoder
         )
 
@@ -52,6 +53,7 @@ class MemberTest extends Specification {
                 password,
                 memberName,
                 phoneNumber,
+                'USER',
                 passwordEncoder
         )
 
